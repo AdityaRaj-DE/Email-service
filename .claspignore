@@ -1,0 +1,15 @@
+# Ignore test runner and python virtual environment/cache
+tests/**
+*.py
+*.pyc
+__pycache__/**
+
+# Ignore documentation and markdown files
+docs/**
+*.md
+
+# Ignore git and clasp files
+.git/**
+.gitignore
+.claspignore
+
