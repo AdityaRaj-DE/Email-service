@@ -1,5 +1,5 @@
 {
-  "scriptId": "1ED9FntRwYEUxM23hBrKG6ONV-yp-5zG7wPJspkehfWVrNhH2ziR_9EeZ",
+  "scriptId": "YOUR_APPS_SCRIPT_PROJECT_ID",
   "rootDir": "",
   "scriptExtensions": [
     ".js",
@@ -14,3 +14,4 @@
   "filePushOrder": [],
   "skipSubdirectories": false
 }
+

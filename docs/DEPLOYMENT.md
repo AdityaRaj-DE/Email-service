@@ -24,11 +24,44 @@ Follow these exact steps to deploy the Centralized Secure Email Service to your 
 
 ## 3. Step 2: Create the Apps Script Project
 
+You can set up the Apps Script project either via **Command Line (`clasp`)** or **Manually via Browser**.
+
+### Option A: Using Clasp CLI (Recommended for Developers)
+
+1. Enable the Google Apps Script API in your account: [script.google.com/home/usersettings](https://script.google.com/home/usersettings).
+2. Install `@google/clasp` and log in:
+   ```bash
+   npm install -g @google/clasp
+   clasp login
+   ```
+3. Initialize the Apps Script project:
+   - **Create a fresh project**:
+     ```bash
+     clasp create --title "centralized-email-service" --type webapp
+     ```
+   - **Or bind to an existing project**:
+     ```bash
+     cp .clasp.json.example .clasp.json
+     # Replace YOUR_APPS_SCRIPT_PROJECT_ID with your Script ID from Project Settings
+     ```
+4. Push all `.gs` source files and `appsscript.json`:
+   ```bash
+   clasp push
+   ```
+5. Open the project in your browser:
+   ```bash
+   clasp open
+   ```
+
+---
+
+### Option B: Manual Setup via Browser
+
 1. Navigate to [Google Apps Script](https://script.google.com).
 2. Click **New project** and name it `centralized-email-service`.
 3. Open `appsscript.json` (click **Project Settings** > Check *"Show 'appsscript.json' manifest file in editor"*, then switch back to the **Editor**).
 4. Replace the contents of `appsscript.json` with the file from this repository.
-5. In the script editor, create the following script files (under `Files > + > Script`) and paste their contents from `src/` (or use `clasp push` to push them directly):
+5. In the script editor, create the following script files (under `Files > + > Script`) and paste their contents from `src/`:
    - `Config.gs` (from `src/Config.gs`)
    - `Security.gs` (from `src/Security.gs`)
    - `ProjectRegistry.gs` (from `src/ProjectRegistry.gs`)

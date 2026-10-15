@@ -1,0 +1,15 @@
+# Clasp deployment credentials & local bindings
+.clasprc.json
+.clasp.json
+
+# Node & Python caches
+node_modules/
+__pycache__/
+*.pyc
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+

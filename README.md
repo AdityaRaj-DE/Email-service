@@ -66,7 +66,63 @@ To help you understand, configure, and customize every part of the service, chec
 
 ---
 
-## 5-Minute Quickstart
+## Developer Setup Workflow (Git Clone & Clasp Flow)
+
+For developers cloning this repository to run and deploy via Google's command line tool ([`@google/clasp`](https://github.com/google/clasp)):
+
+### 1. Prerequisites
+- Node.js & npm (for running `clasp`)
+- Google Account with Apps Script API enabled (Visit [script.google.com/home/usersettings](https://script.google.com/home/usersettings) and toggle **Google Apps Script API** to **ON**).
+
+### 2. Clone Repository & Install Clasp
+```bash
+git clone https://github.com/<your-username>/email_service.git
+cd email_service
+
+# Install clasp globally (or use npx @google/clasp)
+npm install -g @google/clasp
+
+# Login to your Google account via browser
+clasp login
+```
+
+### 3. Initialize Apps Script Project Binding
+You can either create a new script project or bind to an existing one:
+
+**Option A: Create a new Apps Script project via Clasp**
+```bash
+clasp create --title "centralized-email-service" --type webapp
+```
+
+**Option B: Connect to an existing Apps Script project**
+```bash
+cp .clasp.json.example .clasp.json
+# Edit .clasp.json and replace YOUR_APPS_SCRIPT_PROJECT_ID with your Script ID
+# (Found in Apps Script Project Settings > Script ID)
+```
+
+### 4. Push Native Source Code
+```bash
+# Push all src/*.gs files and appsscript.json to your Apps Script project
+clasp push
+```
+
+### 5. Configure Script Properties & Initialize
+1. Open your project in the browser:
+   ```bash
+   clasp open
+   ```
+2. Navigate to **Project Settings (Gear icon) > Script Properties** and configure:
+   - `SPREADSHEET_ID`: `<YOUR_SPREADSHEET_ID>`
+   - `DESTINATION_EMAIL`: `<YOUR_INBOX_EMAIL>`
+3. In the Apps Script editor, run the **`initialSetup`** function once to initialize sheets and the 5-minute background worker trigger.
+4. Deploy the web app (**Deploy > New deployment > Web app > Anyone**).
+
+---
+
+## 5-Minute Manual Quickstart (Without Clasp)
+
+If you prefer not using Node.js or `clasp`, you can set up the service directly through the browser:
 
 ### 1. Create Your Queue Spreadsheet
 1. Create a private Google Sheet at [sheets.new](https://sheets.new) named `Email Service Queue`.
@@ -74,7 +130,7 @@ To help you understand, configure, and customize every part of the service, chec
 
 ### 2. Deploy to Google Apps Script
 1. Open [script.google.com](https://script.google.com) and create a **New project**.
-2. Push or copy the files from [`src/`](src/) into your Apps Script editor.
+2. Copy the files from [`src/`](src/) into your Apps Script editor.
 3. Go to **Project Settings (Gear icon) > Script Properties** and add:
    - `SPREADSHEET_ID`: `<YOUR_SPREADSHEET_ID>`
    - `DESTINATION_EMAIL`: `your-email@example.com`
