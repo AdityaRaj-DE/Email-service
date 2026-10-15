@@ -94,7 +94,9 @@ Follow these exact steps to deploy the Centralized Secure Email Service to your 
 
 ### Test GET Request (Health Check):
 ```bash
-curl -L -X GET "https://script.google.com/macros/s/AKfycbx.../exec"
+DEPLOY_URL="https://script.google.com/macros/s/<YOUR_DEPLOYMENT_ID>/exec"
+
+curl -L "$DEPLOY_URL"
 ```
 *Expected response:*
 ```json
@@ -102,13 +104,14 @@ curl -L -X GET "https://script.google.com/macros/s/AKfycbx.../exec"
   "success": true,
   "service": "Centralized Secure Email Service",
   "version": "1.0.0",
-  "status": "ONLINE"
+  "status": "ONLINE",
+  "timestamp": "2026-10-15T18:00:00.000Z"
 }
 ```
 
 ### Test POST Request (Contact Submission):
 ```bash
-curl -L -X POST "https://script.google.com/macros/s/AKfycbx.../exec" \
+curl -L "$DEPLOY_URL" \
   -H "Content-Type: application/json" \
   -d '{
     "projectId": "portfolio",
@@ -120,7 +123,6 @@ curl -L -X POST "https://script.google.com/macros/s/AKfycbx.../exec" \
       "message": "Testing the centralized email service deployment."
     },
     "website": "",
-    "captchaToken": "your-valid-test-captcha-token",
     "idempotencyKey": "smoke-test-uuid-001"
   }'
 ```
@@ -129,7 +131,7 @@ curl -L -X POST "https://script.google.com/macros/s/AKfycbx.../exec" \
 {
   "success": true,
   "code": "ACCEPTED",
-  "jobId": "job_...",
+  "jobId": "job_1a2b3c_xyz",
   "status": "PENDING",
   "message": "Submission accepted and queued for delivery."
 }
